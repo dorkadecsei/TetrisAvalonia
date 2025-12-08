@@ -1,0 +1,106 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:TetrisAvalonia.ViewModel"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="600"
+        x:Class="TetrisAvaloniaDesktop.MainWindow"
+        x:DataType="vm:ViewModel"
+        Title="Tetris Avalonia" Height="600" Width="500"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False">
+
+    <Window.Resources>
+        <vm:IntToColorConverter x:Key="IntToColorConverter"/>
+    </Window.Resources>
+
+    <Window.KeyBindings>
+        <KeyBinding Gesture="Left" Command="{Binding MoveLeftCommand}"/>
+        <KeyBinding Gesture="Right" Command="{Binding MoveRightCommand}"/>
+        <KeyBinding Gesture="Up" Command="{Binding RotateCommand}"/>
+        <KeyBinding Gesture="Down" Command="{Binding MoveDownCommand}"/>
+        <KeyBinding Gesture="Space" Command="{Binding DropCommand}"/>
+        <KeyBinding Gesture="P" Command="{Binding PauseCommand}"/>
+        <KeyBinding Gesture="Ctrl+S" Command="{Binding SaveGameCommand}"/>
+        <KeyBinding Gesture="Ctrl+O" Command="{Binding LoadGameCommand}"/>
+    </Window.KeyBindings>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0">
+            <MenuItem Header="Fájl">
+                <MenuItem Header="Új játék">
+                    <MenuItem Header="4 x 16" Command="{Binding NewGameCommand}" CommandParameter="4x16"/>
+                    <MenuItem Header="8 x 16" Command="{Binding NewGameCommand}" CommandParameter="8x16"/>
+                    <MenuItem Header="12 x 16" Command="{Binding NewGameCommand}" CommandParameter="12x16"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="Betöltés..." Command="{Binding LoadGameCommand}"/>
+                <MenuItem Header="Mentés..." Command="{Binding SaveGameCommand}"/>
+                <Separator/>
+                <MenuItem Header="Kilépés" Command="{Binding ExitCommand}"/>
+            </MenuItem>
+            <MenuItem Header="Játék">
+                <MenuItem Header="Szünet" Command="{Binding PauseCommand}"/>
+            </MenuItem>
+        </Menu>
+
+        <Viewbox Grid.Row="1" Margin="20">
+            <Border BorderBrush="Black" BorderThickness="2">
+                <ItemsControl ItemsSource="{Binding Fields}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Rows="{Binding TableHeight}" Columns="{Binding TableWidth}"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:Fields">
+                            <Border BorderBrush="Gray" BorderThickness="0.5">
+                                <Rectangle Width="25" Height="25" 
+                                           Fill="{Binding Color, Converter={StaticResource IntToColorConverter}}"/>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Border>
+        </Viewbox>
+
+        <Border Grid.Row="1" Background="#AA000000" IsVisible="{Binding IsGamePaused}">
+            <TextBlock Text="PAUSED" Foreground="White" 
+                       FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+        </Border>
+
+        <Border Grid.Row="1" Background="#CCF04D4D" IsVisible="{Binding IsGameOver}">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="GAME OVER" Foreground="White" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                <TextBlock Text="{Binding GameTime, 
+                                 StringFormat='time: {0}'}" Foreground="White" FontSize="24" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="2" BorderBrush="Gray" BorderThickness="0,1,0,0" Padding="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Column="0" Text="{Binding GameTime, StringFormat='Idõ: {0}'}" FontWeight="Bold" Margin="0,0,10,0"/>
+                <Rectangle Grid.Column="1" Width="1" Fill="Gray" Margin="0,2"/>
+                <TextBlock Grid.Column="2" Text="{Binding LinesCleared, StringFormat='Sorok: {0}'}" FontWeight="Bold" Margin="10,0,10,0"/>
+                <Rectangle Grid.Column="3" Width="1" Fill="Gray" Margin="0,2"/>
+                <TextBlock Grid.Column="4" Text="Nyilak: Mozgás |
+Space: Dobás |
+P: Szünet" FontSize="11" Foreground="Gray" HorizontalAlignment="Right"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
