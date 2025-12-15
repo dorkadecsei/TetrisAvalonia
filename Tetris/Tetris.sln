@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36327.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tetris", "Tetris\Tetris.csproj", "{95D8CC83-BE50-4B08-B237-9A5A3BB93C49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TetrisWPF", "TetrisWPF\TetrisWPF.csproj", "{DCCEA12A-43E3-4FBB-97E8-48BD4BD5E37E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TetrisTest", "TetrisTest\TetrisTest.csproj", "{A1341AEC-33BC-4C5B-99B7-EA7E50652364}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95D8CC83-BE50-4B08-B237-9A5A3BB93C49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95D8CC83-BE50-4B08-B237-9A5A3BB93C49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95D8CC83-BE50-4B08-B237-9A5A3BB93C49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95D8CC83-BE50-4B08-B237-9A5A3BB93C49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCCEA12A-43E3-4FBB-97E8-48BD4BD5E37E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCCEA12A-43E3-4FBB-97E8-48BD4BD5E37E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCCEA12A-43E3-4FBB-97E8-48BD4BD5E37E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCCEA12A-43E3-4FBB-97E8-48BD4BD5E37E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1341AEC-33BC-4C5B-99B7-EA7E50652364}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1341AEC-33BC-4C5B-99B7-EA7E50652364}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1341AEC-33BC-4C5B-99B7-EA7E50652364}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1341AEC-33BC-4C5B-99B7-EA7E50652364}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6F4D051D-19BC-49E7-BAAB-1BC0AEF1A00E}
+	EndGlobalSection
+EndGlobal
